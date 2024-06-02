@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -16,8 +17,12 @@ var (
 func main() {
 
 	//Flags for Number of goroutines
-	threads := flag.Int("t", 1, "Set Number of GoRoutines")
+	threads := flag.Int("t", 0, "Number of GoRoutines to be executed")
 	flag.Parse()
+
+	if *threads == 1 {
+		fmt.Println("Please Add Value to the -t flag -h for help")
+	}
 
 	//Open Credentials Word Lists
 	usernameFile, err := os.OpenFile("./usernames.txt", os.O_RDONLY, 0644)
