@@ -11,16 +11,16 @@ import (
 
 // Set Up Url Var
 var (
-	urlPost string = "https://<YOUR_LAB_ID>.web-security-academy.net/login"
+	urlPost string = "https://0ae100f803cd2b3c807d580d00240072.web-security-academy.net/login"
 )
 
 func main() {
 
 	//Flags for Number of goroutines
-	threads := flag.Int("t", 0, "Number of GoRoutines to be executed")
+	threads := flag.Int("t", 1, "Number of GoRoutines to be executed")
 	flag.Parse()
 
-	if *threads == 1 {
+	if *threads < 1 {
 		fmt.Println("Please Add Value to the -t flag -h for help")
 	}
 
