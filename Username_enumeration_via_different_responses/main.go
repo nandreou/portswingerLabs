@@ -10,7 +10,7 @@ import (
 
 // Set Up Url Var
 var (
-	urlPost string = "<URL_PROVIDED_BY_PORTSWINGER>"
+	urlPost string = "https://0a7e004a044774b48b81a71500a1009f.web-security-academy.net/login"
 )
 
 func main() {

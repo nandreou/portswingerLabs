@@ -7,6 +7,7 @@ import (
 	postcalls "portswinger/brute/postCalls"
 	"strings"
 	"sync"
+	"time"
 )
 
 func BruteForcer(urlPost string, usernames []byte, passwords []byte, threads *int) {
@@ -19,14 +20,15 @@ func BruteForcer(urlPost string, usernames []byte, passwords []byte, threads *in
 	useranmeSplit := len(strings.Split(string(usernames), "\n")) / *threads
 	var splitedUsernames []string
 
-	for i := 0; i < useranmeSplit; i++ {
-		for j := index; j < index+*threads; j++ {
+	for i := 0; i < *threads; i++ {
+		for j := index; j < index+useranmeSplit; j++ {
 			splitedUsernames = append(splitedUsernames, strings.Split(string(usernames), "\n")[j])
 		}
 
-		index += *threads
+		index += useranmeSplit
 		wg.Add(1)
 		go func() {
+			defer wg.Done()
 			found, err := brute(urlPost, splitedUsernames, &passwords)
 			if err != nil {
 				log.Fatal(err)
@@ -35,8 +37,10 @@ func BruteForcer(urlPost string, usernames []byte, passwords []byte, threads *in
 			if found {
 				os.Exit(0)
 			}
+
 		}()
 
+		time.Sleep(100 * time.Millisecond)
 		splitedUsernames = []string{}
 
 	}
@@ -47,10 +51,11 @@ func BruteForcer(urlPost string, usernames []byte, passwords []byte, threads *in
 			splitedUsernames = append(splitedUsernames, strings.Split(string(usernames), "\n")[j])
 		}
 
-		index += *threads
+		index += restOfStrings
 
 		wg.Add(1)
 		go func() {
+			defer wg.Done()
 			found, err := brute(urlPost, splitedUsernames, &passwords)
 			if err != nil {
 				log.Fatal(err)
