@@ -11,7 +11,7 @@ import (
 
 // Set Up Url Var
 var (
-	urlPost string = "https://0adb00f704fa96b1800b498e004a00ea.web-security-academy.net/login"
+	urlPost string = "https://0ad900b6034ce13581536b6900e60082.web-security-academy.net/login"
 )
 
 func main() {
