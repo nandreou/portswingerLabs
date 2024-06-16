@@ -140,13 +140,6 @@ func BruteForcer(urlPost string, usernames []byte, passwords []byte, threads *in
 
 	wg.Wait()
 
-	// if err := findPassword(urlPost, &foundUser, &foundPassword, strings.Split(string(passwords), "\n")); err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// } else {
-	// 	fmt.Println("Credentials Found", foundUser, foundPassword)
-	// }
-
 }
 
 func findUsername(urlPost string, usernames []string, foundUser *string) error {
