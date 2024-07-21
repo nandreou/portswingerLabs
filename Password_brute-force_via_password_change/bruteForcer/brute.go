@@ -105,7 +105,7 @@ func brute(urlPost *string, usernames []string, passwords *[]byte, sessionCookie
 					fmt.Println(err)
 				}
 
-				if body, err := io.ReadAll(response.Body); err != nil {
+				if _, err := io.ReadAll(response.Body); err != nil {
 
 					fmt.Println(err)
 				} else {
